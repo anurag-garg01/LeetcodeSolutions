@@ -19,6 +19,6 @@ public:
         
         }
         
-        return max(sum,sum+cnt*(cnt+1)/2);
+        return sum+cnt*(cnt+1)/2;
     }
 };
