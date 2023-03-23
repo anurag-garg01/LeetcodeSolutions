@@ -43,7 +43,7 @@ class Solution {
          dp[0]=0;
         int right = INT_MAX;
         
-        for(int i=1;i<=n;i++){
+        for(int i=1;i<n;i++){
             int left = dp[i-1] + abs(arr[i]-arr[i-1]);
             
             if(i>1){
