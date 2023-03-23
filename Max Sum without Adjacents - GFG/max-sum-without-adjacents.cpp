@@ -32,9 +32,26 @@ public:
 	
 	int findMaxSum(int *arr, int n) {
 	    // give the max sum bro 
-	    vector<int> dp(n,-1);
+	   // vector<int> dp(n,-1);
+	    int dp[n];
+	    //return func(arr,n-1,dp);
+	    dp[0]=arr[0];
 	    
-	    return func(arr,n-1,dp);
+	    int pick = INT_MIN;
+	    
+	    for(int i =1;i<=n;i++){
+	        pick = arr[i];
+	        if(i>1)
+	         pick += dp[i-2];
+	        
+	        int notpick = dp[i-1];
+	        
+	        dp[i] = max(pick,notpick);
+	    }
+	    
+	    
+	    return dp[n-1];
+	    
 	}
 };
 
