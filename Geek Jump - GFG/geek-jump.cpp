@@ -37,23 +37,32 @@ class Solution {
     
     int minimumEnergy(vector<int>& arr, int n) {
         // so we wil consider from going n-1 to 0 
-        int dp[n];
+       // int dp[n];
        // return func(n-1,dp,arr);
         
-         dp[0]=0;
+        // dp[0]=0;
         int right = INT_MAX;
-        
+        int prev =0;
+        int prev2 = 0;
         for(int i=1;i<n;i++){
-            int left = dp[i-1] + abs(arr[i]-arr[i-1]);
+            // int left = dp[i-1] + abs(arr[i]-arr[i-1]);
             
-            if(i>1){
-                 right = dp[i-2] + abs(arr[i]-arr[i-2]);
-            }
+            // if(i>1){
+            //      right = dp[i-2] + abs(arr[i]-arr[i-2]);
+            // }
             
-            dp[i] = min(left,right);
+            // dp[i] = min(left,right);
+            
+            int left = prev + abs(arr[i]-arr[i-1]);
+            if(i>1)
+             right = prev2 + abs(arr[i]-arr[i-2]);
+            
+            int curri = min(left,right);
+            prev2 = prev;
+            prev = curri;
         }
         
-        return dp[n-1];
+        return prev;
         
     }
 };
