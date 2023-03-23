@@ -37,11 +37,24 @@ class Solution {
     
     int minimumEnergy(vector<int>& arr, int n) {
         // so we wil consider from going n-1 to 0 
-        vector<long long int> dp(n,-1);
-        return func(n-1,dp,arr);
-        //int n=height.size();
-        // vector<int> dp(n,-1);
-        // return solve(n-1,height,dp);
+        int dp[n];
+       // return func(n-1,dp,arr);
+        
+         dp[0]=0;
+        int right = INT_MAX;
+        
+        for(int i=1;i<=n;i++){
+            int left = dp[i-1] + abs(arr[i]-arr[i-1]);
+            
+            if(i>1){
+                 right = dp[i-2] + abs(arr[i]-arr[i-2]);
+            }
+            
+            dp[i] = min(left,right);
+        }
+        
+        return dp[n-1];
+        
     }
 };
 
