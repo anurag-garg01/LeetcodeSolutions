@@ -16,6 +16,7 @@ public:
             if(mp.count(ch)){
                 maxlen = max(maxlen,right-left);
                 left = max(left,mp[ch]+1);
+               
             }
             
             mp[ch]=right;
