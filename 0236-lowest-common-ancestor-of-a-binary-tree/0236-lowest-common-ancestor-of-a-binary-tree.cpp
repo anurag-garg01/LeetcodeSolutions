@@ -9,25 +9,34 @@
  */
 class Solution {
 public:
-
-
-    TreeNode* solve(TreeNode * root, TreeNode* p, TreeNode* q){
-        
-        if(root==NULL || root==p || root==q)
+    TreeNode* func(TreeNode* root, TreeNode* p, TreeNode* q){
+        // base case 
+        if(root==p || root==q || root==NULL){
             return root;
+        }
 
-        TreeNode* left = solve(root->left,p,q);
-        TreeNode* right = solve(root->right,p,q);
+        // check the condition 
+        TreeNode* left = func(root->left,p,q);
+        TreeNode* right =  func(root->right,p,q);
 
-        if (left==NULL)
-            return right;
-        else if(right==NULL)
+        // cases 
+
+        if (right ==NULL){
             return left;
+        }
+        else if(left ==NULL){
+            return right;
+        }
         else 
+        {
             return root;
-
+        }
     }
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        return solve(root,p,q);
+        // p =5 
+
+        // q = 4
+
+        return func(root,p,q);
     }
 };
