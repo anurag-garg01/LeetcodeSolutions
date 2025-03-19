@@ -1,40 +1,42 @@
 class Solution {
 public:
+    int func(vector<int> nums, int ind,vector<int> &dp) {
+        // base case
 
+        if (ind == 0) {
+            return nums[ind];
+        }
 
-    int solve(vector<int>&nums, int ans, int idx,vector<int>&dp){
-        
-       
-        // if(idx==0)
-        //     return nums[0];
-
-        if(idx<0)
+        if (ind < 0) {
             return 0;
+        }
 
+        // take and not take
 
-        if(dp[idx]!=-1)
-            return dp[idx];
+        // not_take
 
-        // taken or not taken 
+        if(dp[ind]!=-1){
+            return dp[ind];
+        }
 
-        int taken = nums[idx] + solve(nums, ans, idx-2,dp);
+        int not_take = func(nums, ind - 1,dp);
 
-        int nottaken =  solve(nums,ans,idx-1,dp);
+        int take = INT_MIN;
 
+        // take
+        if (ind - 2 >= 0) {
+            take = nums[ind] + func(nums, ind - 2,dp);
+        }
 
-        return dp[idx]=max(taken,nottaken);    
+        return dp[ind] = max(take, not_take);
+
+        // write the DP here
     }
-
-
     int rob(vector<int>& nums) {
-
-        // if two adjacent houses can not be robed at the same time
-
-        int ans =0;
-        vector<int> dp(nums.size()+1,-1);
-        return solve(nums,ans,nums.size()-1,dp);
-
-
+        int n = nums.size();
+        vector<int> dp(n+1,-1);
         
+
+        return func(nums, n - 1,dp);
     }
 };
