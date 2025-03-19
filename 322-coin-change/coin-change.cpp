@@ -33,7 +33,7 @@ public:
         // return the fewest amount of coins required
         int n = nums.size();
 
-        vector<vector<int>> dp(n, vector<int>(amount + 1, -1));
+        vector<vector<int>> dp(n+1, vector<int>(amount + 1, -1));
 
         int ans = func(nums, amount, n - 1, dp);
 
