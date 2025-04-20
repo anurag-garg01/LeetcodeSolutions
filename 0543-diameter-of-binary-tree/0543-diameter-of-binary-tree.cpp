@@ -11,28 +11,31 @@
  */
 class Solution {
 public:
+    int func(TreeNode* root,int &maxi){
+        if(root==NULL){
+            return 0;
+        }
+        // if(root->next==NULL){
+        //     return 1;
+        // }
 
-    int dfs(TreeNode* root, int &maxi){
-        if(root==NULL)
-        return 0;
+        // traversal 
+        int lh = func(root->left,maxi);
+        int rh = func(root->right,maxi);
+
+        maxi = max(maxi,lh+rh);
 
 
-        int lhs = dfs(root->left,maxi);
-        int rhs = dfs(root->right,maxi);
-        
-        maxi = max(maxi,lhs+rhs);
-        return 1 + max(lhs,rhs);
+
+        return 1 + max(lh,rh);
+
     }
 
-
     int diameterOfBinaryTree(TreeNode* root) {
-        // return the length of longest path between any two nodes
-        
-        int maxi = 0;
+        int maxi =0;
+        func(root,maxi);
 
-        dfs(root,maxi);
 
         return maxi;
     }
 };
-
