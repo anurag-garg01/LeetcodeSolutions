@@ -11,24 +11,26 @@
  */
 class Solution {
 public:
-    
-   
+    void func(TreeNode* root){
+        // base case 
+        if(root==NULL){
+            return ;
+        }
+
+        // post order traversal 
+
+        func(root->left);
+        func(root->right);
+
+
+        swap(root->left, root->right);
+
+
+
+    }
     TreeNode* invertTree(TreeNode* root) {
-        // invert a binary tree
-        // good problem but I do not like that generally 
-        
-        // if root is child invert m
-        
-        if (root == NULL)
-            return root ;
-        
-     
-        
-        invertTree(root->left);
-        invertTree(root->right);
-       // if(root->left == NULL && root->right==NULL)
-            swap(root->left,root->right);
-        
-        return root;
+         func(root);
+
+         return root;
     }
 };
