@@ -4,33 +4,28 @@ class Solution:
 
         # sort all the anagrams and then push it in set
 
-        st = []
+        # st = []
+        last_sorted = ""
         res = []
 
         for x in words:
 
-            x_st = ''.join(sorted(x))
+            sorted_word = ''.join(sorted(x))
 
-            if st:
-                if st[-1] != x_st:
-                    st.append(x_st)
-                    res.append(x)
-            else :
-                st.append(x_st)
-                res.append(x)
-                
-
-            # if x_st not in st:
-            #     st.add(x_st)
+            # if st:
+            #     if st[-1] != x_st:
+            #         st.append(x_st)
+            #         res.append(x)
+            # else :
+            #     st.append(x_st)
             #     res.append(x)
-            
-        
-        # while st:
-        #     res.append(st[-1])
-        #     st.pop()
+
+
+            if sorted_word != last_sorted:
+                res.append(x)
+                last_sorted = sorted_word
 
         
-
         return res
 
 
