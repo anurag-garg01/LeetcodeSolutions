@@ -1,7 +1,10 @@
 class Solution:
     def maxScore(self, nums: List[int]) -> int:
         # number of +ve integers in the prefix
-        nums.sort()
+
+        # tc : o(n*logn) 
+        # sc : o(N)
+        nums.sort() 
         numbers = nums[::-1]
         cnt =0
 
@@ -9,13 +12,18 @@ class Solution:
         pre_sum =0
         for x in numbers:
             pre_sum += x
-            prefix_list.append(pre_sum)
+            # prefix_list.append(pre_sum)
+
+            if pre_sum>0:
+                cnt+=1
+            else :
+                break
 
         
 
-        for x in prefix_list:
-            if x>0:
-                cnt+=1
+        # for x in prefix_list:
+        #     if x>0:
+        #         cnt+=1
 
 
         
