@@ -1,26 +1,42 @@
 class Solution:
 
-    def backtrack(self, nums: List[int],ind: int, temp :List[int],res :List[List[int]]):
-        # base case 
-        if ind <0:
-            res.append(temp.copy())
-            return 
+    # def backtrack(self, nums: List[int],ind: int, temp :List[int],res :List[List[int]]):
+    #     # base case 
+    #     if ind <0:
+    #         res.append(temp.copy())
+    #         return 
         
-        # take and not take 
+    #     # take and not take 
 
-        # 1. not take 
+    #     # 1. not take 
 
-        self.backtrack(nums,ind-1,temp,res)
+    #     self.backtrack(nums,ind-1,temp,res)
 
-        # take condition 
-        temp.append(nums[ind])
+    #     # take condition 
+    #     temp.append(nums[ind])
 
-        self.backtrack(nums,ind-1,temp,res)
-        temp.pop()
+    #     self.backtrack(nums,ind-1,temp,res)
+    #     temp.pop()
 
     def subsets(self, nums: List[int]) -> List[List[int]]:
 
-        
+        def backtrack(ind: int, temp :List[int],res :List[List[int]]):
+            # base case 
+            if ind <0:
+                res.append(temp.copy())
+                return 
+            
+            # take and not take 
+
+            # 1. not take 
+
+            backtrack(ind-1,temp,res)
+
+            # take condition 
+            temp.append(nums[ind])
+
+            backtrack(ind-1,temp,res)
+            temp.pop()
 
 
         # take and not take 
@@ -29,7 +45,7 @@ class Solution:
         res = []
         n = len(nums)
 
-        self.backtrack(nums,n-1,temp,res)
+        backtrack(n-1,temp,res)
 
         return res
         
