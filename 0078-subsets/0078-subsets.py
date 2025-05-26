@@ -1,38 +1,27 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        # return the subsets 
-        res = []
-        temp = []
-        n = len(nums)
+        # return all the subsets 
+        ans = []
+        def func(ind,temp):
+            #base case 
 
-        # take and not take condn 
-
-        def func(ind):
-            # res nonlocal
-
-            # if ind<0:
-            #     return 
-
-            # base case 
-            if ind <0:
-                res.append(temp.copy())
+            if (ind<0):
+                ans.append(temp.copy())
                 return 
+        
 
-            # take and not_take cond 
+            # take and not take 
 
+            func(ind-1,temp)
 
-            # not_take 
-            func(ind-1)
-
-            # take 
             temp.append(nums[ind])
-            func(ind-1)
+            func(ind-1,temp)
             temp.pop()
-            
-            
+        
+        func(len(nums)-1,[])
+
+        return ans
 
 
-        func(n-1)
 
-        return res
-                
+
