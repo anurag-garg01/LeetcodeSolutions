@@ -13,20 +13,47 @@ class Solution:
 
         # now have heap 
 
-        import heapq
+        # import heapq
 
-        heap = []
+        # heap = []
 
-        # max heap 
+        # # max heap 
 
-        for key,value in my_dict.items():
-            heapq.heappush(heap,[-value,key])
+        # for key,value in my_dict.items():
+        #     heapq.heappush(heap,[-value,key])
         
 
-        while k:
-            [value,key] = heapq.heappop(heap)
-            ans.append(key)
-            k-=1
+        # while k:
+        #     [value,key] = heapq.heappop(heap)
+        #     ans.append(key)
+        #     k-=1
+
+
+        ## Without heap solution 
+
+        # using bucket sort 
+
+        ls = [[] for x in range(n)]
+
+        for key,value in my_dict.items():
+            ls[value-1].append(key)
+        
+
+        print(ls)
+
+        for i in range(n-1,-1,-1): # iterating in reverse 
+            if len(ls[i])>0:
+                for j in range (len(ls[i])):
+                    if(k>0):
+                        ans.append(ls[i][j])
+                        k-=1
+                    elif(k<=0):
+                        return ans
+
+                
+
+
+
         
 
         return ans
