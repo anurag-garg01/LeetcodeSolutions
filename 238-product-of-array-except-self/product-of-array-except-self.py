@@ -37,9 +37,9 @@ class Solution:
 
         # print(post_sum)
 
-        post = post_sum[::-1]
+        post_sum.reverse()
 
-        print(post)
+        # print(post)
 
         
 
@@ -48,7 +48,7 @@ class Solution:
         ans = []
 
         for i in range (len(nums)):
-            ans.append(pre_sum[i]*post[i])
+            ans.append(pre_sum[i]*post_sum[i])
 
 
 
