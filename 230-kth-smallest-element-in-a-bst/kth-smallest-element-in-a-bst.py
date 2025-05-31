@@ -14,20 +14,20 @@ class Solution:
 
 
 
-        def func(root,res): # inorder traversal 
+        def func(root): # inorder traversal 
             nonlocal k 
             if not root:
                 return None
-            func(root.left,res)
+            func(root.left)
             if(k>0):
                 res.append(root.val)
                 k-=1
             else:
                 return 
 
-            func(root.right, res)
+            func(root.right)
         
-        func(root,res)
+        func(root)
 
         return res[k-1]
 
