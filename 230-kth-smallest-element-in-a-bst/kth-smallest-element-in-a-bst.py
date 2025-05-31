@@ -15,10 +15,16 @@ class Solution:
 
 
         def func(root,res): # inorder traversal 
+            nonlocal k 
             if not root:
                 return None
             func(root.left,res)
-            res.append(root.val)
+            if(k>0):
+                res.append(root.val)
+                k-=1
+            else:
+                return 
+
             func(root.right, res)
         
         func(root,res)
