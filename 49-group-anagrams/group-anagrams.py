@@ -12,13 +12,23 @@ class Solution:
         # take a hashmap of string : List[str]
 
         mp = collections.defaultdict(list)
+
         n = len(strs)
 
         for i in range (n):
             # temp= strs[i].sort() # can we sort string like this ? 
             temp = strs[i]
-            sorted_temp = "".join(sorted(temp))
-            mp[sorted_temp].append(strs[i])
+            count = [0]*26
+
+            for char in strs[i]:
+                count[ord(char)-ord('a')]+=1
+            
+
+
+
+            # sorted_temp = "".join(sorted(temp))
+            # mp[sorted_temp].append(strs[i])
+            mp[tuple(count)].append(strs[i])
 
         
         # we have the map at the end 
